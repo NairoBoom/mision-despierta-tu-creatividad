@@ -20,26 +20,31 @@
       <span>Puntos: <b id="puntos">0</b></span>
       <span>Vidas: <b id="vidas">3</b></span>
       <span>Escenario: <b id="escenario">-</b></span>
+      <span>Tiempo: <b id="tiempo">-</b></span>
     </div>
+    <div id="reloj"><div id="barraTiempo"></div></div>
 
     <div id="lienzo"></div>
 
     <section class="pantalla" id="pantallaInicio">
       <h2>Hola, soy Artín</h2>
       <p>Los estudiantes del colegio perdieron la creatividad. Ayúdame a recuperarla superando retos de color,
-        reciclaje y dibujo en el taller de arte, el parque creativo y la galería.</p>
+        reciclaje y dibujo en el taller de arte, el parque creativo y la galería. Ojo: cada reto tiene tiempo.</p>
+      <p>Récord: <b id="record">0</b> puntos</p>
       <button id="botonJugar">Jugar</button>
     </section>
 
     <section class="pantalla oculta" id="pantallaInstrucciones">
       <h2>Instrucciones</h2>
       <ul>
-        <li>Empiezas con 0 puntos y 3 vidas.</li>
-        <li>Nivel 1, taller de arte: responde retos de combinación de colores.</li>
-        <li>Nivel 2, parque creativo: responde retos de reciclaje.</li>
-        <li>Nivel 3, galería artística: dibuja con el mouse o con el dedo y presenta tu obra.</li>
-        <li>Cada respuesta correcta suma 10 puntos. Cada error resta una vida.</li>
-        <li>Presentar tu obra suma 20 puntos.</li>
+        <li>Empiezas con 0 puntos y 3 vidas. Los retos cambian en cada partida.</li>
+        <li>Nivel 1, taller de arte: preguntas de teoría del color (15 segundos cada una) y un laboratorio
+          donde debes preparar un color mezclando gotas de pintura (30 segundos).</li>
+        <li>Nivel 2, parque creativo: preguntas de reciclaje y una clasificación contrarreloj de residuos que caen.</li>
+        <li>Nivel 3, galería artística: tienes 60 segundos para dibujar una obra que cumpla un reto creativo.</li>
+        <li>Pregunta correcta: +10. Mezcla correcta: +15. Si respondes en la primera mitad del tiempo ganas +5 extra.</li>
+        <li>Un error o quedarse sin tiempo resta una vida.</li>
+        <li>Presentar tu obra suma 20 puntos y cumplir el reto creativo suma 10 más.</li>
         <li>Si pierdes las 3 vidas, termina la partida.</li>
       </ul>
       <button id="botonComenzar">Comenzar</button>
@@ -53,10 +58,42 @@
       <button id="botonContinuar" class="oculta">Continuar</button>
     </section>
 
+    <section class="pantalla oculta" id="pantallaMezcla">
+      <h2 id="tituloMezcla"></h2>
+      <p>Prepara el color que aparece a la izquierda en el lienzo. Agrega gotas de pintura (máximo 6), compara
+        con tu mezcla y pulsa Comprobar cuando creas que quedó igual.</p>
+      <div id="pinturas"></div>
+      <button id="botonVaciar" class="secundario">Vaciar</button>
+      <button id="botonComprobar">Comprobar mezcla</button>
+      <p id="mensajeMezcla"></p>
+      <button id="botonContinuarMezcla" class="oculta">Continuar</button>
+    </section>
+
+    <section class="pantalla oculta" id="pantallaClasificar">
+      <h2 id="tituloClasificar"></h2>
+      <p>Van a caer 8 residuos, cada uno más rápido. Antes de que toquen las canecas, envíalos a la correcta
+        con los botones o con las teclas 1, 2 y 3. Acierto: +5. Error: -5. Necesitas al menos 5 aciertos
+        para no perder una vida.</p>
+      <button id="botonEmpezarClasificar">¡Empezar!</button>
+      <div id="canecas" class="oculta"></div>
+      <p id="mensajeClasificar"></p>
+      <button id="botonContinuarClasificar" class="oculta">Continuar</button>
+    </section>
+
     <section class="pantalla oculta" id="pantallaDibujo">
       <h2>Nivel 3: Galería artística</h2>
-      <p>Dibuja en el lienzo cómo te sientes hoy. Escoge un color y la emoción que quieres expresar.</p>
+      <p id="retoCreativo"></p>
+      <p>Dibuja en el lienzo con el mouse o con el dedo. Escoge los colores y la emoción que quieres expresar.</p>
       <div id="colores"></div>
+      <p>
+        <label for="grosor">Pincel:</label>
+        <select id="grosor">
+          <option value="3">Fino</option>
+          <option value="6" selected>Medio</option>
+          <option value="12">Grueso</option>
+        </select>
+        <label><input type="checkbox" id="espejo"> Modo espejo</label>
+      </p>
       <p>
         <label for="emocion">Emoción:</label>
         <select id="emocion">
